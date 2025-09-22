@@ -53,11 +53,11 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 1rem;
         }
 
         .logo img {
-            height: 40px;
+            height: 60px;
             width: auto;
         }
 
@@ -104,9 +104,10 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            padding: 2rem;
+            padding: 6rem;
             color: white;
             margin-top: 0;
+            margin-left: 6%;
         }
 
         .hero::before {
@@ -128,6 +129,7 @@
             animation: fadeInUp 1.5s ease-out;
             position: relative;
             z-index: 1;
+            margin-top: 2rem;
         }
 
         .hero h1 {
@@ -136,6 +138,10 @@
             font-weight: 700;
             line-height: 1.2;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
         }
 
         .hero h1 strong {
@@ -672,6 +678,17 @@
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.8rem;
+                text-align: center;
+                margin: 0 auto 1.5rem auto;
+            }
+
+            .hero-content {
+                margin-top: 1rem;
+                padding: 1rem;
+            }
+
+            .logo img {
+                height: 45px;
             }
             
             .nav-links {
@@ -737,10 +754,10 @@
 
             .hero {
                 padding: 1rem;
-            }
-
-            .hero-content {
-                padding: 1rem;
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
 
             /* Ajustement de centrage pour mobile */
