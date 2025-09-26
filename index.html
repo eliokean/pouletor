@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -104,10 +105,9 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            padding: 12rem;
+            padding: 12rem 2rem;
             color: white;
             margin-top: 0;
-            margin-left: 6%;
         }
 
         .hero::before {
@@ -322,13 +322,13 @@
             z-index: 1;
         }
 
-        /* Produits Section - CORRIGÉ */
+        /* Produits Section - CORRECTION PRINCIPALE */
         .produits {
             background: linear-gradient(135deg, #FF8C00 0%, #FF6B35 50%, #DC143C 100%);
             color: white;
-            width: 100vw;
-            margin-left: calc(-50vw + 50%);
-            padding: 6rem 0;
+            width: 100%;
+            margin: 0;
+            padding: 6rem 2rem;
             position: relative;
             display: flex;
             justify-content: center;
@@ -375,12 +375,16 @@
 
         .produits-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 3rem;
             margin-top: 2rem;
             position: relative;
             z-index: 1;
             justify-items: center;
+            max-width: 1200px;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .produit-card {
@@ -676,11 +680,10 @@
             }
         }
 
-        /* Responsive - CORRIGÉ */
+        /* Responsive - CORRECTIONS MAJEURES */
         @media (max-width: 768px) {
             .hero {
                 padding: 8rem 1rem 2rem 1rem;
-                margin-left: 0;
                 min-height: 80vh;
             }
 
@@ -692,6 +695,10 @@
             .hero-content {
                 margin-top: 0;
                 padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
             }
 
             .logo img {
@@ -748,24 +755,37 @@
                 padding: 0 1rem;
             }
 
+            /* CORRECTION CRITIQUE - Section produits mobile */
             .produits {
-                margin-left: 0;
-                padding: 3rem 0;
+                width: 100%;
+                margin: 0;
+                padding: 4rem 1rem;
             }
 
             .produits-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
-                padding: 0 1rem;
+                max-width: 100%;
+                padding: 0;
             }
 
             .produit-card {
                 max-width: 100%;
-                margin: 0 auto;
+                margin: 0;
+                width: 100%;
+            }
+
+            .produit-image-container {
+                height: 200px;
+            }
+
+            .produit-content {
+                padding: 1.5rem 1rem;
             }
 
             .histoire {
-                margin-left: 0;
+                width: 100%;
+                margin: 0;
                 padding: 3rem 1rem;
             }
 
@@ -781,6 +801,53 @@
             .cta-button {
                 padding: 1.2rem 2.5rem;
                 font-size: 1rem;
+            }
+
+            .footer-cta h2 {
+                font-size: 2rem;
+            }
+
+            /* Corrections spécifiques pour très petits écrans */
+            .avantages-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .avantage-card {
+                min-width: auto;
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        /* Corrections pour écrans très petits */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .produits-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .produit-card {
+                max-width: 100%;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            nav {
+                padding: 0 1rem;
             }
         }
 
