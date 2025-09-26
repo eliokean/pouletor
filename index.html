@@ -791,6 +791,85 @@
             }
         }
 
+        @media (max-width: 768px) {
+    /* Header mobile */
+    .nav-links {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        padding: 1rem;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        gap: 0.5rem;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 999;
+    }
+
+    .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Hero section */
+    .hero {
+        padding: 100px 1rem 2rem 1rem;
+        margin-left: 0;
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+
+    /* Sections produits */
+    .produits {
+        margin-left: 0;
+        padding: 2rem 0;
+    }
+
+    .produits-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+
+    .produit-card {
+        max-width: 100%;
+        margin: 0;
+    }
+
+    /* Histoire section */
+    .histoire {
+        margin-left: 0;
+        padding: 2rem 1rem;
+    }
+
+    .histoire-content {
+        margin: 0;
+        padding: 1.5rem;
+    }
+
+    /* Valeurs et avantages */
+    .valeurs-grid, .avantages-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+
+    .section-wrapper {
+        padding: 2rem 1rem;
+    }
+}
+
         /* Smooth scrolling */
         html {
             scroll-behavior: smooth;
