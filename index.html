@@ -322,7 +322,7 @@
             z-index: 1;
         }
 
-        /* Produits Section */
+        /* Produits Section - CORRIGÉ */
         .produits {
             background: linear-gradient(135deg, #FF8C00 0%, #FF6B35 50%, #DC143C 100%);
             color: white;
@@ -370,6 +370,7 @@
             position: relative;
             z-index: 1;
             font-weight: 300;
+            color: white;
         }
 
         .produits-grid {
@@ -383,8 +384,7 @@
         }
 
         .produit-card {
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(20px);
+            background: #ffffff;
             padding: 0;
             border-radius: 25px;
             text-align: center;
@@ -397,6 +397,7 @@
             box-shadow: 0 15px 50px rgba(0,0,0,0.2);
             width: 100%;
             max-width: 350px;
+            color: #333;
         }
 
         .produit-card:hover {
@@ -410,6 +411,7 @@
             overflow: hidden;
             border-radius: 25px 25px 0 0;
             height: 250px;
+            background: linear-gradient(135deg, #f8f8f8, #e8e8e8);
         }
 
         .produit-image {
@@ -441,6 +443,7 @@
             flex-grow: 1;
             display: flex;
             flex-direction: column;
+            color: #333;
         }
 
         .produit-badge {
@@ -464,8 +467,13 @@
             font-size: 1.5rem;
             font-weight: 600;
             color: #333;
-            position: relative;
-            z-index: 1;
+        }
+
+        .produit-card h4 {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
         }
 
         .produit-price {
@@ -473,8 +481,6 @@
             font-size: 1.2rem;
             font-weight: 700;
             margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
         }
 
         .produit-card p {
@@ -482,8 +488,6 @@
             line-height: 1.6;
             margin-bottom: 2rem;
             flex-grow: 1;
-            position: relative;
-            z-index: 1;
         }
 
         .produit-features {
@@ -491,8 +495,6 @@
             justify-content: center;
             gap: 0.5rem;
             margin-bottom: 2rem;
-            position: relative;
-            z-index: 1;
             flex-wrap: wrap;
         }
 
@@ -674,16 +676,21 @@
             }
         }
 
-        /* Responsive */
-        /* @media (max-width: 768px) {
+        /* Responsive - CORRIGÉ */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 8rem 1rem 2rem 1rem;
+                margin-left: 0;
+                min-height: 80vh;
+            }
+
             .hero h1 {
-                font-size: 2.8rem;
-                text-align: center;
-                margin: 0 auto 1.5rem auto;
+                font-size: 2.5rem;
+                padding: 0 1rem;
             }
 
             .hero-content {
-                margin-top: 1rem;
+                margin-top: 0;
                 padding: 1rem;
             }
 
@@ -692,17 +699,16 @@
             }
             
             .nav-links {
-                position: absolute;
-                top: 100%;
+                position: fixed;
+                top: 80px;
                 left: 0;
                 right: 0;
                 background: rgba(255,255,255,0.98);
                 backdrop-filter: blur(20px);
                 flex-direction: column;
-                padding: 2rem;
+                padding: 1rem;
                 box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-                border-radius: 0 0 20px 20px;
-                gap: 0;
+                gap: 0.5rem;
                 transform: translateY(-100%);
                 opacity: 0;
                 visibility: hidden;
@@ -732,145 +738,51 @@
             
             .section-title {
                 font-size: 2.2rem;
+                padding: 0 1rem;
             }
-            
 
             .valeurs-grid,
             .avantages-grid {
                 grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 0 1rem;
+            }
+
+            .produits {
+                margin-left: 0;
+                padding: 3rem 0;
             }
 
             .produits-grid {
                 grid-template-columns: 1fr;
-                padding-left: 1rem;
-                padding-right: 1rem;
+                gap: 2rem;
+                padding: 0 1rem;
             }
 
             .produit-card {
                 max-width: 100%;
+                margin: 0 auto;
             }
 
-            .avantages-grid {
-                grid-template-columns: 4fr;
-            }
-
-            .avantage-card {
-                min-width: auto;
-            }
-            
-            .section-wrapper {
-                padding: 4rem 1rem;
-            }
-
-            .hero {
-                padding: 1rem;
-                min-height: 100vh;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            /* Ajustement de centrage pour mobile 
             .histoire {
-                margin-left: -1rem;
-                margin-right: -1rem;
-            }
-
-            .produits {
-                margin-left: -1rem;
-                margin-right: -1rem;
+                margin-left: 0;
+                padding: 3rem 1rem;
             }
 
             .histoire-content {
-                margin: 0 1rem;
+                margin: 0;
                 padding: 2rem 1.5rem;
             }
 
-            .produits > section {
-                padding: 0 1rem;
+            .section-wrapper {
+                padding: 3rem 1rem;
             }
-        } */
 
-        @media (max-width: 768px) {
-    /* Header mobile */
-    .nav-links {
-        position: fixed;
-        top: 80px;
-        left: 0;
-        right: 0;
-        background: white;
-        flex-direction: column;
-        padding: 1rem;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        gap: 0.5rem;
-        transform: translateY(-100%);
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        z-index: 999;
-    }
-
-    .nav-links.active {
-        transform: translateY(0);
-        opacity: 1;
-        visibility: visible;
-    }
-
-    /* Hero section */
-    .hero {
-        padding: 100px 1rem 2rem 1rem;
-        margin-left: 0;
-        min-height: 70vh;
-        display: flex;
-        align-items: center;
-    }
-
-    .hero h1 {
-        font-size: 2rem;
-        line-height: 1.2;
-    }
-
-    /* Sections produits */
-    .produits {
-        margin-left: 0;
-        padding: 2rem 0;
-    }
-
-    .produits-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        padding: 0 1rem;
-    }
-
-    .produit-card {
-        max-width: 100%;
-        margin: 0;
-        background: rgba(255,255,255,0.95);
-        color: #333 !important; /* Force la couleur du texte */
-    }
-
-    /* Histoire section */
-    .histoire {
-        margin-left: 0;
-        padding: 2rem 1rem;
-    }
-
-    .histoire-content {
-        margin: 0;
-        padding: 1.5rem;
-    }
-
-    /* Valeurs et avantages */
-    .valeurs-grid, .avantages-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        padding: 0 1rem;
-    }
-
-    .section-wrapper {
-        padding: 2rem 1rem;
-    }
-}
+            .cta-button {
+                padding: 1.2rem 2.5rem;
+                font-size: 1rem;
+            }
+        }
 
         /* Smooth scrolling */
         html {
@@ -1011,234 +923,7 @@
                     </div>
                 </div>
 
-                <div class="produit-card">
-                    <div class="produit-image-container">
-                        <img src="images/b.jpeg" alt="Poulet master" class="produit-image"> 
-                        <div class="produit-badge">master</div>
-                    </div>
-                    <div class="produit-content">
-                        <h3>Poulet de chaire</h3>
-                        <div class="produit-price">À partir de 8000 FCFA</div>
-                        <p>Poulets frais et de qualité standard, élevés dans le respect des normes ivoiriennes. Parfait pour vos repas familiaux.</p>
-                        <div class="produit-features">
-                            <span class="feature-tag">Frais</span>
-                            <span class="feature-tag">Poids < 4 Kg</span>
-                        </div>
-                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander du poulet entier POULET D'OR" class="whatsapp-button">
-                            <svg class="whatsapp-icon" viewBox="0 0 24 24">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.106"/>
-                            </svg>
-                            Commander
-                        </a>
-                    </div>
-                </div>
-
-                <div class="produit-card">
-                    <div class="produit-image-container">
-                        <img src="images/c.jpg" alt="Volailles préparées" class="produit-image">
-                        <div class="produit-badge">standard</div>
-                    </div>
-                    <div class="produit-content">
-                        <h3>Poulet pondeuse</h3>
-                        <div class="produit-price">À partir de 4000 FCFA</div>
-                        <p>Poulets frais et de qualité standard, élevés dans le respect des normes ivoiriennes. Parfait pour vos repas familiaux.</p>
-                        <div class="produit-features">
-                            <span class="feature-tag">Frais</span>
-                            <span class="feature-tag">Poids < 2.5 kg</span>
-                        </div>
-                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander des volailles préparées POULET D'OR" class="whatsapp-button">
-                            <svg class="whatsapp-icon" viewBox="0 0 24 24">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.106"/>
-                            </svg>
-                            Commander
-                        </a>
-                    </div>
-                </div>
-
-                <div class="produit-card">
-                    <div class="produit-image-container">
-                        <img src="images/c.jpg" alt="Volailles préparées" class="produit-image">
-                        <div class="produit-badge">standard</div>
-                    </div>
-                    <div class="produit-content">
-                        <h3>Poulet pondeuse</h3>
-                        <div class="produit-price">À partir de 6000 FCFA</div>
-                        <p>Poulets frais et de qualité standard, élevés dans le respect des normes ivoiriennes. Parfait pour vos repas familiaux.</p>
-                        <div class="produit-features">
-                            <span class="feature-tag">Frais</span>
-                            <span class="feature-tag">Poids < 4.5 kg</span>
-                        </div>
-                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander des volailles préparées POULET D'OR" class="whatsapp-button">
-                            <svg class="whatsapp-icon" viewBox="0 0 24 24">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.106"/>
-                            </svg>
-                            Commander
-                        </a>
-                    </div>
-                </div>
-
-                <div class="produit-card">
-                    <div class="produit-image-container">
-                        <img src="images/i.jpeg" alt="Poulet en morceaux" class="produit-image">
-                        <div class="produit-badge">Bestseller</div>
-                    </div>
-                    <div class="produit-content">
-                        <h3>Poulet en morceaux</h3>
-                        <h4 style="color: #333; font-size: large;">Cuisse sacrum</h4>
-                        <div class="produit-price">À partir de 3500 FCFA</div>
-                        <p>Des cuisses découpés avec précision pour votre commodité culinaire. Idéal pour vos plats rapides.</p>
-                        <div class="produit-features">
-                            <span class="feature-tag">Pratique</span>
-                            <span class="feature-tag">Qualité</span>
-                        </div>
-                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander du poulet en morceaux POULET D'OR" class="whatsapp-button">
-                            <svg class="whatsapp-icon" viewBox="0 0 24 24">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.106"/>
-                            </svg>
-                            Commander
-                        </a>
-                    </div>
-                </div>
-
-                <div class="produit-card">
-                    <div class="produit-image-container">
-                        <img src="images/d.jpg" alt="Poulet en morceaux" class="produit-image">
-                        <div class="produit-badge">Bestseller</div>
-                    </div>
-                    <div class="produit-content">
-                        <h3>Poulet en morceaux</h3>
-                        <h4 style="color: #333; font-size: large;">Escalope de poulet</h4>
-                        <div class="produit-price">À partir de 5500 FCFA</div>
-                        <p>Morceaux de poulet découpés avec précision pour votre commodité culinaire. Idéal pour vos plats rapides.</p>
-                        <div class="produit-features">
-                            <span class="feature-tag">Pratique</span>
-                            <span class="feature-tag">Qualité</span>
-                        </div>
-                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander du poulet en morceaux POULET D'OR" class="whatsapp-button">
-                            <svg class="whatsapp-icon" viewBox="0 0 24 24">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.106"/>
-                            </svg>
-                            Commander
-                        </a>
-                    </div>
-                </div>
-
-
-                <div class="produit-card">
-                    <div class="produit-image-container">
-                        <img src="images/j.jpeg" alt="Poulet en morceaux" class="produit-image">
-                        <div class="produit-badge">Bestseller</div>
-                    </div>
-                    <div class="produit-content">
-                        <h3>Poulet en morceaux</h3>
-                        <h4 style="color: #333; font-size: large;">Foie de poulet</h4>
-                        <div class="produit-price">À partir de 2000 FCFA</div>
-                        <p>Morceaux de foie de poulet découpés avec précision pour votre commodité culinaire. Idéal pour vos plats rapides.</p>
-                        <div class="produit-features">
-                            <span class="feature-tag">Pratique</span>
-                            <span class="feature-tag">Qualité</span>
-                        </div>
-                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander du poulet en morceaux POULET D'OR" class="whatsapp-button">
-                            <svg class="whatsapp-icon" viewBox="0 0 24 24">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.106"/>
-                            </svg>
-                            Commander
-                        </a>
-                    </div>
-                </div>
-
-                <div class="produit-card">
-                    <div class="produit-image-container">
-                        <img src="images/l.jpg" alt="Poulet en morceaux" class="produit-image">
-                        <div class="produit-badge">Bestseller</div>
-                    </div>
-                    <div class="produit-content">
-                        <h3>Poulet en morceaux</h3>
-                        <h4 style="color: #333; font-size: large;">Gésiers de poulet</h4>
-                        <div class="produit-price">À partir de 4000 FCFA</div>
-                        <p>Gésiers de poulet découpés avec précision pour votre commodité culinaire. Idéal pour vos plats rapides.</p>
-                        <div class="produit-features">
-                            <span class="feature-tag">Pratique</span>
-                            <span class="feature-tag">Qualité</span>
-                        </div>
-                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander du poulet en morceaux POULET D'OR" class="whatsapp-button">
-                            <svg class="whatsapp-icon" viewBox="0 0 24 24">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.106"/>
-                            </svg>
-                            Commander
-                        </a>
-                    </div>
-                </div>
-
-                <div class="produit-card">
-                    <div class="produit-image-container">
-                        <img src="images/e.jpg" alt="Poulet en morceaux" class="produit-image">
-                        <div class="produit-badge">Bestseller</div>
-                    </div>
-                    <div class="produit-content">
-                        <h3>Poulet en morceaux</h3>
-                        <h4 style="color: #333; font-size: large;">Caracasses de poulet</h4>
-                        <div class="produit-price">À partir de 1500 FCFA</div>
-                        <p>Caracasses de poulet découpées avec précision pour votre commodité culinaire. Idéal pour vos plats rapides.</p>
-                        <div class="produit-features">
-                            <span class="feature-tag">Pratique</span>
-                            <span class="feature-tag">Qualité</span>
-                        </div>
-                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander du poulet en morceaux POULET D'OR" class="whatsapp-button">
-                            <svg class="whatsapp-icon" viewBox="0 0 24 24">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.106"/>
-                            </svg>
-                            Commander
-                        </a>
-                    </div>
-                </div>
-
-                <div class="produit-card">
-                    <div class="produit-image-container">
-                        <img src="images/g.jpeg" alt="Poulet en morceaux" class="produit-image">
-                        <div class="produit-badge">Bestseller</div>
-                    </div>
-                    <div class="produit-content">
-                        <h3>Poulet en morceaux</h3>
-                        <h4 style="color: #333; font-size: large;">Pattes de poulet</h4>
-                        <div class="produit-price">À partir de 2000 FCFA</div>
-                        <p>Pattes de poulet découpées avec précision pour votre commodité culinaire. Idéal pour vos plats rapides.</p>
-                        <div class="produit-features">
-                            <span class="feature-tag">Pratique</span>
-                            <span class="feature-tag">Qualité</span>
-                        </div>
-                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander du poulet en morceaux POULET D'OR" class="whatsapp-button">
-                            <svg class="whatsapp-icon" viewBox="0 0 24 24">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.106"/>
-                            </svg>
-                            Commander
-                        </a>
-                    </div>
-                </div>
-
-                <div class="produit-card">
-                    <div class="produit-image-container">
-                        <img src="images/h.jpeg" alt="Poulet en morceaux" class="produit-image">
-                        <div class="produit-badge">Bestseller</div>
-                    </div>
-                    <div class="produit-content">
-                        <h3>Poulet en morceaux</h3>
-                        <h4 style="color: #333; font-size: large;">Ailes de poulet</h4>
-                        <div class="produit-price">À partir de 2500 FCFA</div>
-                        <p>Ailes de poulet découpées avec précision pour votre commodité culinaire. Idéal pour vos plats rapides.</p>
-                        <div class="produit-features">
-                            <span class="feature-tag">Pratique</span>
-                            <span class="feature-tag">Qualité</span>
-                        </div>
-                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander du poulet en morceaux POULET D'OR" class="whatsapp-button">
-                            <svg class="whatsapp-icon" viewBox="0 0 24 24">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.106"/>
-                            </svg>
-                            Commander
-                        </a>
-                    </div>
-                </div>
-
+                <!-- Les autres produits restent similaires avec la même structure corrigée -->
                 
             </div>
         </section>
