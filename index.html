@@ -1,1348 +1,563 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>POULET D'OR - Excellence Ivoirienne</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#fff8f0',
+                            100: '#fff5ee',
+                            500: '#FF8C00',
+                            600: '#FF6B35',
+                            700: '#DC143C'
+                        },
+                        gold: '#FFD700',
+                        accent: '#FFA500'
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'Arial', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'fadeInUp': 'fadeInUp 1.5s ease-out',
+                        'pulse': 'pulse 2s infinite'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        },
+                        fadeInUp: {
+                            'from': { opacity: '0', transform: 'translateY(30px)' },
+                            'to': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        pulse: {
+                            '0%, 100%': { transform: 'scale(1)' },
+                            '50%': { transform: 'scale(1.05)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.7;
-            color: #333;
-            overflow-x: hidden;
-            background: linear-gradient(180deg, #fff 0%, #faf8f5 100%);
-        }
-
-        /* Header */
-        header {
-            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,140,0,0.05));
-            backdrop-filter: blur(20px);
-            padding: 1.2rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 30px rgba(255,140,0,0.1);
-            border-bottom: 1px solid rgba(255,140,0,0.1);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-        }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(45deg, #FF8C00, #FF6B35, #DC143C);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: 1px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .logo img {
-            height: 60px;
-            width: auto;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2.5rem;
-        }
-
-        .nav-links a {
-            color: #333;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            font-size: 0.95rem;
-        }
-
-        .nav-links a:hover {
-            color: #FF6B35;
-            background: linear-gradient(135deg, rgba(255,140,0,0.1), rgba(255,107,53,0.1));
-            transform: translateY(-1px);
-        }
-
-        /* Mobile menu toggle */
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: #0dff4a;
-            cursor: pointer;
-            padding: 0.5rem;
-            z-index: 1001;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #FF8C00 0%, #FF6B35 50%, #DC143C 100%);
-            min-height: 100vh;
-            max-width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            padding: 12rem 2rem;
-            color: white;
-            margin-top: 0;
-
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(255,255,255,0.05) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .hero-content {
-            max-width: 900px;
-            padding: 2rem;
-            animation: fadeInUp 1.5s ease-out;
-            position: relative;
-            z-index: 1;
-            margin-top: 2rem;
-
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            line-height: 1.2;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-            text-align: center;
-            margin-left: auto;
-            margin-right: auto;
-            width: 100%;
-        }
-
-        .hero h1 strong {
-            color: #FFD700;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2.5rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.8;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-            color: #DC143C;
-            padding: 1.5rem 3.5rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            text-decoration: none;
-            display: inline-block;
-            box-shadow: 0 8px 25px rgba(255,215,0,0.4);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 15px 35px rgba(255,215,0,0.6);
-            background: linear-gradient(135deg, #FFA500 0%, #FFD700 100%);
-        }
-
-        /* Sections - Centrées */
-        .section-wrapper {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            padding: 6rem 2rem;
-        }
-
-        section {
-            max-width: 1200px;
-            width: 100%;
-        }
-
-        .section-title {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 4rem;
-            background: linear-gradient(45deg, #FF8C00, #DC143C);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, #FF8C00, #DC143C);
-            border-radius: 2px;
-        }
-
-        /* Histoire Section */
-        .histoire {
-            background: linear-gradient(135deg, #FFF8F0 0%, #FFF5EE 100%);
-            width: 100vw;
-            margin-left: calc(-50vw + 50%);
-            padding: 6rem 0;
-            display: flex;
-            justify-content: center;
-        }
-
-        .histoire-content {
-            text-align: center;
-            font-size: 1.2rem;
-            line-height: 2;
-            color: #444;
-            max-width: 850px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-            background: rgba(255,255,255,0.8);
-            backdrop-filter: blur(15px);
-            padding: 3rem;
-            border-radius: 25px;
-            box-shadow: 0 15px 50px rgba(255,140,0,0.1);
-            border: 1px solid rgba(255,140,0,0.2);
-        }
-
-        /* Valeurs */
-        .valeurs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .valeur-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,248,240,0.9));
-            backdrop-filter: blur(20px);
-            padding: 3rem 2rem;
-            border-radius: 25px;
-            text-align: center;
-            transition: all 0.4s ease;
-            border: 2px solid transparent;
-            box-shadow: 0 15px 40px rgba(255,140,0,0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .valeur-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255,140,0,0.05), rgba(220,20,60,0.05));
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .valeur-card:hover::before {
-            opacity: 1;
-        }
-
-        .valeur-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 60px rgba(255,140,0,0.2);
-            border-color: rgba(255,107,53,0.3);
-        }
-
-        .valeur-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #FF8C00, #FF6B35);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 2rem;
-            font-size: 2rem;
-            color: white;
-            position: relative;
-            z-index: 1;
-            box-shadow: 0 10px 30px rgba(255,140,0,0.3);
-        }
-
-        .valeur-card h3 {
-            color: #333;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-            font-weight: 600;
-            position: relative;
-            z-index: 1;
-        }
-
-        .valeur-card p {
-            color: #666;
-            line-height: 1.8;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Produits Section - CORRECTION PRINCIPALE */
-        .produits {
-            background: linear-gradient(135deg, #FF8C00 0%, #FF6B35 50%, #DC143C 100%);
-            color: white;
-            width: 100%;
-            margin: 0;
-            padding: 6rem 2rem;
-            position: relative;
-            display: flex;
-            justify-content: center;
-        }
-
-        .produits::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(255,255,255,0.05) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .produits .section-title {
-            color: white;
-            background: linear-gradient(45deg, #FFD700, #FFA500);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-            z-index: 1;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .produits .section-title::after {
-            background: linear-gradient(90deg, #FFD700, #FFA500);
-        }
-
-        .produits-intro {
-            text-align: center;
-            font-size: 1.2rem;
-            margin-bottom: 4rem;
-            opacity: 0.95;
-            position: relative;
-            z-index: 1;
-            font-weight: 300;
-            color: white;
-        }
-
-        .produits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 3rem;
-            margin-top: 2rem;
-            position: relative;
-            z-index: 1;
-            justify-items: center;
-            max-width: 1200px;
-            width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .produit-card {
-            background: #ffffff;
-            padding: 0;
-            border-radius: 25px;
-            text-align: center;
-            transition: all 0.4s ease;
-            border: 2px solid rgba(255,215,0,0.3);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
-            width: 100%;
-            max-width: 350px;
-            color: #333;
-        }
-
-        .produit-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 30px 70px rgba(0,0,0,0.3);
-            border-color: #FFD700;
-        }
-
-        .produit-image-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 25px 25px 0 0;
-            height: 250px;
-            background: linear-gradient(135deg, #f8f8f8, #e8e8e8);
-        }
-
-        .produit-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .produit-card:hover .produit-image {
-            transform: scale(1.1);
-        }
-
-        .produit-placeholder {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #FF8C00, #DC143C);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            color: white;
-            font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .produit-content {
-            padding: 2rem 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            color: #333;
-        }
-
-        .produit-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: linear-gradient(45deg, #FFD700, #FFA500);
-            color: #DC143C;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 15px rgba(255,215,0,0.5);
-            animation: pulse 2s infinite;
-        }
-
-        .produit-card h3 {
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .produit-card h4 {
-            color: #666;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .produit-price {
-            color: #FF8C00;
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .produit-card p {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-            flex-grow: 1;
-        }
-
-        .produit-features {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .feature-tag {
-            background: linear-gradient(135deg, rgba(255,140,0,0.1), rgba(255,107,53,0.1));
-            color: #FF8C00;
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            border: 1px solid rgba(255,140,0,0.3);
-        }
-
-        .whatsapp-button {
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            color: white;
-            padding: 1rem 1.5rem;
-            border: none;
-            border-radius: 30px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            margin-top: auto;
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-        }
-
-        .whatsapp-button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255,255,255,0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: all 0.3s ease;
-        }
-
-        .whatsapp-button:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .whatsapp-button:hover {
-            background: linear-gradient(135deg, #128C7E, #25D366);
-            transform: scale(1.05);
-            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.4);
-        }
-
-        .whatsapp-icon {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-
-        /* Pourquoi nous choisir */
-        .avantages-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-
-        .avantage-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,248,240,0.8));
-            backdrop-filter: blur(20px);
-            padding: 3rem 2.5rem;
-            border-radius: 20px;
-            transition: all 0.4s ease;
-            border-left: 4px solid transparent;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.04);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .avantage-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 0%;
-            background: linear-gradient(180deg, #FF8C00, #DC143C);
-            transition: height 0.4s ease;
-        }
-
-        .avantage-card:hover::before {
-            height: 100%;
-        }
-
-        .avantage-card:hover {
-            transform: translateX(5px);
-            box-shadow: 0 15px 40px rgba(255,140,0,0.15);
-            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,248,240,0.9));
-        }
-
-        .avantage-card h3 {
-            color: #333;
-            margin-bottom: 1.5rem;
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-
-        .avantage-card p {
-            color: #666;
-            line-height: 1.8;
-        }
-
-        /* Footer */
-        footer {
-            background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
-            color: white;
-            text-align: center;
-            padding: 5rem 0;
-            position: relative;
-        }
-
-        .footer-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .footer-cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            background: linear-gradient(45deg, #FFD700, #FF8C00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
-        }
-
-        .footer-cta p {
-            font-size: 1.1rem;
-            margin-bottom: 3rem;
-            line-height: 1.8;
-            color: #ccc;
-        }
-
-        .footer-bottom {
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,140,0,0.3);
-            margin-top: 2rem;
-            color: #999;
-            font-size: 0.9rem;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-        }
-
-        /* Responsive - CORRECTIONS MAJEURES */
-        @media (max-width: 768px) {
-            .hero {
-                padding: 8rem 1rem 2rem 1rem;
-                min-height: 80vh;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-                padding: 0 1rem;
-            }
-
-            .hero-content {
-                margin-top: 0;
-                padding: 1rem;
-                
-            }
-
-            .logo {
-                font-size: 1.5rem;
-            }
-
-            .logo img {
-                height: 45px;
-            }
-            
-            .nav-links {
-                position: fixed;
-                top: 80px;
-                left: 0;
-                right: 0;
-                background: rgba(255,255,255,0.98);
-                backdrop-filter: blur(20px);
-                flex-direction: column;
-                padding: 1rem;
-                box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-                gap: 0.5rem;
-                transform: translateY(-100%);
-                opacity: 0;
-                visibility: hidden;
-                transition: all 0.3s ease;
-            }
-
-            .nav-links.active {
-                transform: translateY(0);
-                opacity: 1;
-                visibility: visible;
-            }
-
-            .nav-links li {
-                margin: 0.5rem 0;
-            }
-
-            .nav-links a {
-                display: block;
-                padding: 1rem;
-                text-align: center;
-                border-radius: 10px;
-            }
-
-            .mobile-menu-toggle {
-                display: block;
-            }
-            
-            .section-title {
-                font-size: 2.2rem;
-                padding: 0 1rem;
-            }
-
-            .valeurs-grid,
-            .avantages-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                padding: 0 1rem;
-            }
-
-            /* CORRECTION CRITIQUE - Section produits mobile */
-            .produits {
-                width: 100%;
-                margin: 0;
-                padding: 4rem 1rem;
-            }
-
-            .produits-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                max-width: 100%;
-                padding: 0;
-            }
-
-            .produit-card {
-                max-width: 100%;
-                margin: 0;
-                width: 100%;
-            }
-
-            .produit-image-container {
-                height: 200px;
-            }
-
-            .produit-content {
-                padding: 1.5rem 1rem;
-            }
-
-            .histoire {
-                width: 100%;
-                margin: 0;
-                padding: 3rem 1rem;
-            }
-
-            .histoire-content {
-                margin: 0;
-                padding: 2rem 1.5rem;
-            }
-
-            .section-wrapper {
-                padding: 3rem 1rem;
-            }
-
-            .cta-button {
-                padding: 1.2rem 2.5rem;
-                font-size: 1rem;
-            }
-
-            .footer-cta h2 {
-                font-size: 2rem;
-            }
-
-            /* Corrections spécifiques pour très petits écrans */
-            .avantages-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .avantage-card {
-                min-width: auto;
-                padding: 2rem 1.5rem;
-            }
-        }
-
-        /* Corrections pour écrans très petits */
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .produits-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .produit-card {
-                max-width: 100%;
-            }
-
-            .logo {
-                font-size: 1.2rem;
-            }
-
-            nav {
-                padding: 0 1rem;
-            }
-        }
-
-        /* Smooth scrolling */
         html {
             scroll-behavior: smooth;
         }
-
-        /* Scroll animations */
+        
         .scroll-animate {
             opacity: 0;
             transform: translateY(20px);
             transition: all 0.8s ease-out;
         }
-
+        
         .scroll-animate.visible {
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* Floating elements */
-        .floating {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
+        
+        .hero-pattern {
+            background-image: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                             radial-gradient(circle at 80% 70%, rgba(255,255,255,0.05) 0%, transparent 50%);
         }
     </style>
-    <style>
-    .social-buttons {
-        display: flex;
-        gap: 15px;
-    }
-    .social-button svg {
-        width: 30px;
-        height: 30px;
-        fill: #fff;
-    }
-    .social-button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        text-decoration: none;
-        transition: 0.3s;
-    }
-    .whatsapp { background-color: #25D366; }
-    .facebook { background-color: #1877F2; }
-    .instagram { 
-        background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, 
-        #fd5949 45%, #d6249f 60%, #285AEB 90%);
-    }
-    .tiktok { background-color: #000000; }
-    .social-button:hover { transform: scale(1.1); }
-</style>
-
 </head>
-<body>
-    <header>
-        <nav>
-            <div class="logo">
-                <img src="images/f.png" alt="Logo Poulet d'Or">
-                POULET D'OR
+<body class="font-sans bg-gradient-to-b from-white to-primary-50 text-gray-800">
+    <!-- Header -->
+    <header class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-xl shadow-lg shadow-primary-100/30 border-b border-primary-100 transition-all duration-300">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <img src="images/f.png" alt="Logo Poulet d'Or" class="h-12 w-auto">
+                    <span class="text-2xl font-bold bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700 bg-clip-text text-transparent">
+                        POULET D'OR
+                    </span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#accueil" class="text-gray-700 hover:text-primary-600 font-medium transition-colors duration-300 relative group">
+                        Accueil
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#histoire" class="text-gray-700 hover:text-primary-600 font-medium transition-colors duration-300 relative group">
+                        Histoire
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#valeurs" class="text-gray-700 hover:text-primary-600 font-medium transition-colors duration-300 relative group">
+                        Valeurs
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#produits" class="text-gray-700 hover:text-primary-600 font-medium transition-colors duration-300 relative group">
+                        Produits
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#contact" class="text-gray-700 hover:text-primary-600 font-medium transition-colors duration-300 relative group">
+                        Contact
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <button id="mobileMenuToggle" class="md:hidden text-primary-600 text-xl bg-primary-50 w-10 h-10 rounded-lg flex items-center justify-center transition-colors duration-300 hover:bg-primary-100">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
-            <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#accueil">Accueil</a></li>
-                <li><a href="#histoire">Histoire</a></li>
-                <li><a href="#valeurs">Valeurs</a></li>
-                <li><a href="#produits">Produits</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+            
+            <!-- Mobile Navigation -->
+            <div id="mobileMenu" class="hidden md:hidden bg-white/95 backdrop-blur-xl py-4 px-4 rounded-lg shadow-lg mt-2 border border-primary-100">
+                <div class="flex flex-col space-y-3">
+                    <a href="#accueil" class="text-gray-700 hover:text-primary-600 font-medium transition-colors duration-300 py-2 px-4 rounded-lg hover:bg-primary-50">Accueil</a>
+                    <a href="#histoire" class="text-gray-700 hover:text-primary-600 font-medium transition-colors duration-300 py-2 px-4 rounded-lg hover:bg-primary-50">Histoire</a>
+                    <a href="#valeurs" class="text-gray-700 hover:text-primary-600 font-medium transition-colors duration-300 py-2 px-4 rounded-lg hover:bg-primary-50">Valeurs</a>
+                    <a href="#produits" class="text-gray-700 hover:text-primary-600 font-medium transition-colors duration-300 py-2 px-4 rounded-lg hover:bg-primary-50">Produits</a>
+                    <a href="#contact" class="text-gray-700 hover:text-primary-600 font-medium transition-colors duration-300 py-2 px-4 rounded-lg hover:bg-primary-50">Contact</a>
+                </div>
+            </div>
         </nav>
     </header>
 
-    <section id="accueil" class="hero">
-        <div class="hero-content">
-            <h1>Bienvenue chez <strong>POULET D'OR</strong></h1>
-            <p>POULET D’OR est une filiale de Ivoire Volaille, spécialisée dans la production d’aliments à base de volailles de haute qualité.
-                Nous mettons un point d’honneur à garantir des produits savoureux, sains et conformes aux normes les plus exigeantes, grâce à notre savoir-faire et à notre engagement pour l’excellence.
-                Avec POULET D’OR, vous choisissez le goût, la qualité et la fiabilité d’une marque ivoirienne de référence.
+    <!-- Hero Section -->
+    <section id="accueil" class="pt-24 bg-gradient-to-br from-primary-500 via-primary-600 to-primary-700 min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 hero-pattern"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white relative z-10 animate-fadeInUp">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                Bienvenue chez <span class="text-gold drop-shadow-lg">POULET D'OR</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 leading-relaxed max-w-3xl mx-auto">
+                POULET D'OR est une filiale de Ivoire Volaille, spécialisée dans la production d'aliments à base de volailles de haute qualité.
+                Nous mettons un point d'honneur à garantir des produits savoureux, sains et conformes aux normes les plus exigeantes.
             </p>
-            <a href="#produits" class="cta-button">Découvrir nos produits</a>
+            <a href="#produits" class="inline-block bg-gradient-to-r from-gold to-accent text-primary-700 font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                Découvrir nos produits
+            </a>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#histoire" class="text-white text-2xl">
+                <i class="fas fa-chevron-down"></i>
+            </a>
         </div>
     </section>
 
-    <div class="histoire scroll-animate" id="histoire">
-        <section>
-            <h2 class="section-title">Notre Histoire</h2>
-            <div class="histoire-content floating">
-                <p>Fondée en 2024, notre entreprise est née de la passion pour la volaille et la volonté de partager notre expertise avec vous. Nous avons commencé notre aventure avec une vision claire : vous offrir des produits de qualité supérieure, préparés avec amour et soin.</p>
+    <!-- Histoire Section -->
+    <section id="histoire" class="py-20 bg-gradient-to-br from-primary-50 to-primary-100 scroll-animate">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-primary-500 to-primary-700 bg-clip-text text-transparent">
+                Notre Histoire
+            </h2>
+            <div class="bg-white/80 backdrop-blur-lg rounded-2xl p-8 md:p-12 shadow-xl border border-primary-200 animate-float">
+                <p class="text-lg md:text-xl text-gray-700 leading-relaxed text-center">
+                    Fondée en 2024, notre entreprise est née de la passion pour la volaille et la volonté de partager notre expertise avec vous. 
+                    Nous avons commencé notre aventure avec une vision claire : vous offrir des produits de qualité supérieure, préparés avec amour et soin.
+                </p>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 
-    <div class="section-wrapper scroll-animate" id="valeurs">
-        <section>
-            <h2 class="section-title">Nos Valeurs</h2>
-            <div class="valeurs-grid">
-                <div class="valeur-card">
-                    <div class="valeur-icon">✨</div>
-                    <h3>Qualité</h3>
-                    <p>Nous sommes déterminés à vous offrir des produits de la plus haute qualité, sélectionnés avec soin et préparés avec amour.</p>
+    <!-- Valeurs Section -->
+    <section id="valeurs" class="py-20 scroll-animate">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-primary-500 to-primary-700 bg-clip-text text-transparent">
+                Nos Valeurs
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Qualité Card -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl border border-transparent hover:border-primary-300 transition-all duration-300 transform hover:-translate-y-2 group">
+                    <div class="w-20 h-20 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white text-2xl mb-6 mx-auto shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-4 text-gray-800">Qualité</h3>
+                    <p class="text-gray-600 text-center">
+                        Nous sommes déterminés à vous offrir des produits de la plus haute qualité, sélectionnés avec soin et préparés avec amour.
+                    </p>
                 </div>
-                <div class="valeur-card">
-                    <div class="valeur-icon">💡</div>
-                    <h3>Innovation</h3>
-                    <p>Nous sommes constamment à la recherche de nouvelles idées et de nouvelles saveurs pour vous offrir des produits qui vous surprendront et vous raviront.</p>
-                </div>
-                <div class="valeur-card">
-                    <div class="valeur-icon">🤝</div>
-                    <h3>Proximité</h3>
-                    <p>Nous sommes proches de nos clients et nous nous efforçons de comprendre vos besoins et vos attentes pour vous offrir des produits qui vous conviennent.</p>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div class="produits scroll-animate" id="produits">
-        <section>
-            <h2 class="section-title">Nos Produits</h2>
-            <p class="produits-intro">Découvrez notre gamme variée de produits à base de volaille de première qualité :</p>
-            <div class="produits-grid">
-                <div class="produit-card">
-                    <div class="produit-image-container">
-                        <img src="images/b.jpeg" alt="Poulet standard" class="produit-image"> 
-                        <div class="produit-badge">standard</div>
-                    </div>
-                    <div class="produit-content">
-                        <h3>Poulet de chaire</h3>
-                        <div class="produit-price">À partir de 2500 FCFA</div>
-                        <p>Poulets frais et de qualité standard, élevés dans le respect des normes ivoiriennes. Parfait pour vos repas familiaux.</p>
-                        <div class="produit-features">
-                            <span class="feature-tag">Frais</span>
-                            <span class="feature-tag">Poids < 1.8 Kg</span>
-                        </div>
-                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander du poulet entier POULET D'OR" class="whatsapp-button">
-                            <svg class="whatsapp-icon" viewBox="0 0 24 24">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.106"/>
-                            </svg>
-                            Commander
-                        </a>
-                    </div>
-                </div>
-
-                <div class="produit-card">
-                    <div class="produit-image-container">
-                        <img src="images/b.jpeg" alt="Poulet moyen" class="produit-image"> 
-                        <div class="produit-badge">Moyen</div>
-                    </div>
-                    <div class="produit-content">
-                        <h3>Poulet de chaire</h3>
-                        <div class="produit-price">À partir de 5000 FCFA</div>
-                        <p>Poulets frais et de qualité moyenne, élevés dans le respect des normes ivoiriennes. Parfait pour vos repas familiaux.</p>
-                        <div class="produit-features">
-                            <span class="feature-tag">Frais</span>
-                            <span class="feature-tag">Poids < 2.5 Kg</span>
-                        </div>
-                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander du poulet entier POULET D'OR" class="whatsapp-button">
-                            <svg class="whatsapp-icon" viewBox="0 0 24 24">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.106"/>
-                            </svg>
-                            Commander
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Les autres produits restent similaires avec la même structure corrigée -->
-
-                <div class="produit-card">
-                    <div class="produit-image-container">
-                        <img src="images/b.jpeg" alt="Poulet master" class="produit-image"> 
-                        <div class="produit-badge">master</div>
-                    </div>
-                    <div class="produit-content">
-                        <h3>Poulet de chaire</h3>
-                        <div class="produit-price">À partir de 8000 FCFA</div>
-                        <p>Poulets frais et de qualité standard, élevés dans le respect des normes ivoiriennes. Parfait pour vos repas familiaux.</p>
-                        <div class="produit-features">
-                            <span class="feature-tag">Frais</span>
-                            <span class="feature-tag">Poids < 4 Kg</span>
-                        </div>
-                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander du poulet entier POULET D'OR" class="whatsapp-button">
-                            <svg class="whatsapp-icon" viewBox="0 0 24 24">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.106"/>
-                            </svg>
-                            Commander
-                        </a>
-                    </div>
-                </div>
-
-                <div class="produit-card">
-                    <div class="produit-image-container">
-                        <img src="images/c.jpg" alt="Volailles préparées" class="produit-image">
-                        <div class="produit-badge">standard</div>
-                    </div>
-                    <div class="produit-content">
-                        <h3>Poulet pondeuse</h3>
-                        <div class="produit-price">À partir de 4000 FCFA</div>
-                        <p>Poulets frais et de qualité standard, élevés dans le respect des normes ivoiriennes. Parfait pour vos repas familiaux.</p>
-                        <div class="produit-features">
-                            <span class="feature-tag">Frais</span>
-                            <span class="feature-tag">Poids < 2.5 kg</span>
-                        </div>
-                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander des volailles préparées POULET D'OR" class="whatsapp-button">
-                            <svg class="whatsapp-icon" viewBox="0 0 24 24">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.106"/>
-                            </svg>
-                            Commander
-                        </a>
-                    </div>
-                </div>
-
-                <div class="produit-card">
-                    <div class="produit-image-container">
-                        <img src="images/c.jpg" alt="Volailles préparées" class="produit-image">
-                        <div class="produit-badge">standard</div>
-                    </div>
-                    <div class="produit-content">
-                        <h3>Poulet pondeuse</h3>
-                        <div class="produit-price">À partir de 6000 FCFA</div>
-                        <p>Poulets frais et de qualité standard, élevés dans le respect des normes ivoiriennes. Parfait pour vos repas familiaux.</p>
-                        <div class="produit-features">
-                            <span class="feature-tag">Frais</span>
-                            <span class="feature-tag">Poids < 4.5 kg</span>
-                        </div>
-                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander des volailles préparées POULET D'OR" class="whatsapp-button">
-                            <svg class="whatsapp-icon" viewBox="0 0 24 24">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.106"/>
-                            </svg>
-                            Commander
-                        </a>
-                    </div>
-                </div>
-
-                <div class="produit-card">
-                    <div class="produit-image-container">
-                        <img src="images/i.jpeg" alt="Poulet en morceaux" class="produit-image">
-                        <div class="produit-badge">Bestseller</div>
-                    </div>
-                    <div class="produit-content">
-                        <h3>Poulet en morceaux</h3>
-                        <h4 style="color: #333; font-size: large;">Cuisse sacrum</h4>
-                        <div class="produit-price">À partir de 3500 FCFA</div>
-                        <p>Des cuisses découpés avec précision pour votre commodité culinaire. Idéal pour vos plats rapides.</p>
-                        <div class="produit-features">
-                            <span class="feature-tag">Pratique</span>
-                            <span class="feature-tag">Qualité</span>
-                        </div>
-                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander du poulet en morceaux POULET D'OR" class="whatsapp-button">
-                            <svg class="whatsapp-icon" viewBox="0 0 24 24">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.106"/>
-                            </svg>
-                            Commander
-                        </a>
-                    </div>
-                </div>
-
-                <div class="produit-card">
-                    <div class="produit-image-container">
-                        <img src="images/d.jpg" alt="Poulet en morceaux" class="produit-image">
-                        <div class="produit-badge">Bestseller</div>
-                    </div>
-                    <div class="produit-content">
-                        <h3>Poulet en morceaux</h3>
-                        <h4 style="color: #333; font-size: large;">Escalope de poulet</h4>
-                        <div class="produit-price">À partir de 5500 FCFA</div>
-                        <p>Morceaux de poulet découpés avec précision pour votre commodité culinaire. Idéal pour vos plats rapides.</p>
-                        <div class="produit-features">
-                            <span class="feature-tag">Pratique</span>
-                            <span class="feature-tag">Qualité</span>
-                        </div>
-                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander du poulet en morceaux POULET D'OR" class="whatsapp-button">
-                            <svg class="whatsapp-icon" viewBox="0 0 24 24">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.106"/>
-                            </svg>
-                            Commander
-                        </a>
-                    </div>
-                </div>
-
-
-                <div class="produit-card">
-                    <div class="produit-image-container">
-                        <img src="images/j.jpeg" alt="Poulet en morceaux" class="produit-image">
-                        <div class="produit-badge">Bestseller</div>
-                    </div>
-                    <div class="produit-content">
-                        <h3>Poulet en morceaux</h3>
-                        <h4 style="color: #333; font-size: large;">Foie de poulet</h4>
-                        <div class="produit-price">À partir de 2000 FCFA</div>
-                        <p>Morceaux de foie de poulet découpés avec précision pour votre commodité culinaire. Idéal pour vos plats rapides.</p>
-                        <div class="produit-features">
-                            <span class="feature-tag">Pratique</span>
-                            <span class="feature-tag">Qualité</span>
-                        </div>
-                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander du poulet en morceaux POULET D'OR" class="whatsapp-button">
-                            <svg class="whatsapp-icon" viewBox="0 0 24 24">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.106"/>
-                            </svg>
-                            Commander
-                        </a>
-                    </div>
-                </div>
-
-                <div class="produit-card">
-                    <div class="produit-image-container">
-                        <img src="images/l.jpg" alt="Poulet en morceaux" class="produit-image">
-                        <div class="produit-badge">Bestseller</div>
-                    </div>
-                    <div class="produit-content">
-                        <h3>Poulet en morceaux</h3>
-                        <h4 style="color: #333; font-size: large;">Gésiers de poulet</h4>
-                        <div class="produit-price">À partir de 4000 FCFA</div>
-                        <p>Gésiers de poulet découpés avec précision pour votre commodité culinaire. Idéal pour vos plats rapides.</p>
-                        <div class="produit-features">
-                            <span class="feature-tag">Pratique</span>
-                            <span class="feature-tag">Qualité</span>
-                        </div>
-                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander du poulet en morceaux POULET D'OR" class="whatsapp-button">
-                            <svg class="whatsapp-icon" viewBox="0 0 24 24">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.106"/>
-                            </svg>
-                            Commander
-                        </a>
-                    </div>
-                </div>
-
-                <!--<div class="produit-card">
-                    <div class="produit-image-container">
-                        <img src="images/e.jpg" alt="Poulet en morceaux" class="produit-image">
-                        <div class="produit-badge">Bestseller</div>
-                    </div>
-                    <div class="produit-content">
-                        <h3>Poulet en morceaux</h3>
-                        <h4 style="color: #333; font-size: large;">Caracasses de poulet</h4>
-                        <div class="produit-price">À partir de 1500 FCFA</div>
-                        <p>Caracasses de poulet découpées avec précision pour votre commodité culinaire. Idéal pour vos plats rapides.</p>
-                        <div class="produit-features">
-                            <span class="feature-tag">Pratique</span>
-                            <span class="feature-tag">Qualité</span>
-                        </div>
-                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander du poulet en morceaux POULET D'OR" class="whatsapp-button">
-                            <svg class="whatsapp-icon" viewBox="0 0 24 24">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.106"/>
-                            </svg>
-                            Commander
-                        </a>
-                    </div>
-                </div>
-
-                <div class="produit-card">
-                    <div class="produit-image-container">
-                        <img src="images/g.jpeg" alt="Poulet en morceaux" class="produit-image">
-                        <div class="produit-badge">Bestseller</div>
-                    </div>
-                    <div class="produit-content">
-                        <h3>Poulet en morceaux</h3>
-                        <h4 style="color: #333; font-size: large;">Pattes de poulet</h4>
-                        <div class="produit-price">À partir de 2000 FCFA</div>
-                        <p>Pattes de poulet découpées avec précision pour votre commodité culinaire. Idéal pour vos plats rapides.</p>
-                        <div class="produit-features">
-                            <span class="feature-tag">Pratique</span>
-                            <span class="feature-tag">Qualité</span>
-                        </div>
-                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander du poulet en morceaux POULET D'OR" class="whatsapp-button">
-                            <svg class="whatsapp-icon" viewBox="0 0 24 24">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.106"/>
-                            </svg>
-                            Commander
-                        </a>
-                    </div>
-                </div>
-
-                <div class="produit-card">
-                    <div class="produit-image-container">
-                        <img src="images/h.jpeg" alt="Poulet en morceaux" class="produit-image">
-                        <div class="produit-badge">Bestseller</div>
-                    </div>
-                    <div class="produit-content">
-                        <h3>Poulet en morceaux</h3>
-                        <h4 style="color: #333; font-size: large;">Ailes de poulet</h4>
-                        <div class="produit-price">À partir de 2500 FCFA</div>
-                        <p>Ailes de poulet découpées avec précision pour votre commodité culinaire. Idéal pour vos plats rapides.</p>
-                        <div class="produit-features">
-                            <span class="feature-tag">Pratique</span>
-                            <span class="feature-tag">Qualité</span>
-                        </div>
-                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander du poulet en morceaux POULET D'OR" class="whatsapp-button">
-                            <svg class="whatsapp-icon" viewBox="0 0 24 24">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.106"/>
-                            </svg>
-                            Commander
-                        </a>
-                    </div>
-                </div>-->
-
                 
-            </div>
-        </section>
-    </div>
-
-    <div class="section-wrapper scroll-animate" id="pourquoi">
-        <section>
-            <h2 class="section-title">Pourquoi Nous Choisir ?</h2>
-            <div class="avantages-grid">
-                <div class="avantage-card">
-                    <h3>✅ Qualité garantie</h3>
-                    <p>Nous garantissons la qualité de nos produits, sélectionnés avec soin et préparés avec amour par nos experts.</p>
+                <!-- Innovation Card -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl border border-transparent hover:border-primary-300 transition-all duration-300 transform hover:-translate-y-2 group">
+                    <div class="w-20 h-20 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white text-2xl mb-6 mx-auto shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-4 text-gray-800">Innovation</h3>
+                    <p class="text-gray-600 text-center">
+                        Nous sommes constamment à la recherche de nouvelles idées et saveurs pour vous offrir des produits qui vous surprendront et vous raviront.
+                    </p>
                 </div>
-                <div class="avantage-card">
-                    <h3>🌟 Saveur et fraîcheur</h3>
-                    <p>Nos produits sont préparés quotidiennement pour vous offrir une expérience culinaire exceptionnelle et authentique.</p>
-                </div>
-                <div class="avantage-card">
-                    <h3>💼 Proximité et service</h3>
-                    <p>Nous sommes à votre écoute 24h/7j et nous nous efforçons de vous offrir un service personnalisé et de qualité.</p>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <footer id="contact">
-        <div class="footer-content">
-            <div class="footer-cta">
-                <h2>Contactez-nous dès maintenant !</h2>
-                <p>Découvrez l'excellence de POULET D'OR et laissez-vous séduire par nos produits de qualité supérieure. Commandez directement via WhatsApp pour une expérience client exceptionnelle !</p>
-                <div class="social-buttons">
-                    <!-- WhatsApp -->
-                    <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander du poulet en morceaux POULET D'OR" target="_blank" class="social-button whatsapp">
-                        <svg class="whatsapp-icon" viewBox="0 0 24 24">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.106"/>
-                        </svg>
-                    </a>
-
-                    <!-- Facebook -->
-                    <a href="https://www.facebook.com/share/1KJuALat2R/?mibextid=wwXIfr" target="_blank" class="social-button facebook">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M22.675 0h-21.35C.597 0 0 .597 0 1.325v21.351C0 23.403.597 24 
-                            1.325 24h11.495v-9.294H9.691v-3.622h3.129V8.413c0-3.1 1.893-4.788 
-                            4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 
-                            0-1.796.715-1.796 1.763v2.31h3.587l-.467 3.622h-3.12V24h6.116C23.403 
-                            24 24 23.403 24 22.676V1.325C24 .597 23.403 0 22.675 0z"/>
-                        </svg>
-                    </a>
-
-                    <!-- Instagram -->
-                    <a href="https://www.instagram.com/poulet_d_or.ci?igsh=bXhtajNnaHNqNDJ4&utm_source=qr" target="_blank" class="social-button instagram">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.35 
-                            3.608 1.325.975.975 1.262 2.242 1.325 3.608.058 1.266.069 
-                            1.646.069 4.834s-.012 3.568-.07 4.834c-.062 1.366-.35 
-                            2.633-1.325 3.608-.975.975-2.242 1.262-3.608 1.325-1.266.058-1.646.069-4.834.069s-3.568-.012-4.834-.07c-1.366-.062-2.633-.35-3.608-1.325-.975-.975-1.262-2.242-1.325-3.608C2.175 
-                            15.568 2.163 15.188 2.163 12s.012-3.568.07-4.834c.062-1.366.35-2.633 
-                            1.325-3.608.975-.975 2.242-1.262 3.608-1.325C8.432 
-                            2.175 8.812 2.163 12 2.163m0-2.163C8.741 0 8.332.013 
-                            7.052.072 5.775.131 4.638.42 3.678 1.38 2.718 2.34 2.429 
-                            3.478 2.37 4.755.013 8.332 0 8.741 0 12c0 3.259.013 
-                            3.668.072 4.948.059 1.277.348 2.415 1.308 
-                            3.375.96.96 2.097 1.249 3.375 1.308 1.28.059 1.689.072 
-                            4.948.072s3.668-.013 4.948-.072c1.277-.059 2.415-.348 
-                            3.375-1.308.96-.96 1.249-2.097 1.308-3.375.059-1.28.072-1.689.072-4.948 
-                            0-3.259-.013-3.668-.072-4.948-.059-1.277-.348-2.415-1.308-3.375C19.415.42 
-                            18.277.131 17 .072 15.72.013 15.311 0 12 0z"/>
-                            <path d="M12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 
-                            10.162a4 4 0 110-8 4 4 0 010 8z"/>
-                            <circle cx="18.406" cy="5.594" r="1.44"/>
-                        </svg>
-                    </a>
-
-                    <!-- TikTok -->
-                    <a href="https://www.tiktok.com/@pouletdor.ci?_t=ZM-9027G3cluTU&_r=1" target="_blank" class="social-button tiktok">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12.5 2h4.75c.414 1.657 1.644 3.053 3.25 3.75v4.75c-1.627-.027-3.173-.527-4.5-1.4v7.9c0 
-                            3.22-2.61 5.83-5.83 5.83S4.34 20.22 4.34 17c0-2.84 2.05-5.2 
-                            4.75-5.72v3.05c-.57.37-.95 1-.95 1.72 0 
-                            1.14.93 2.07 2.07 2.07s2.07-.93 2.07-2.07V2z"/>
-                        </svg>
-                    </a>
+                
+                <!-- Proximité Card -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl border border-transparent hover:border-primary-300 transition-all duration-300 transform hover:-translate-y-2 group">
+                    <div class="w-20 h-20 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white text-2xl mb-6 mx-auto shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-4 text-gray-800">Proximité</h3>
+                    <p class="text-gray-600 text-center">
+                        Nous sommes proches de nos clients et nous nous efforçons de comprendre vos besoins pour vous offrir des produits qui vous conviennent.
+                    </p>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 POULET D'OR - Excellence Ivoirienne | Tous droits réservés</p>
+        </div>
+    </section>
+
+    <!-- Produits Section -->
+    <section id="produits" class="py-20 bg-gradient-to-br from-primary-500 via-primary-600 to-primary-700 scroll-animate">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-white">
+                Nos Produits
+            </h2>
+            <p class="text-xl text-center mb-12 text-white/90 max-w-3xl mx-auto">
+                Découvrez notre gamme variée de produits à base de volaille de première qualité
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Produit Card 1 - Poulet Standard -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="images/b.jpeg" alt="Poulet standard" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-gradient-to-r from-gold to-accent text-primary-700 font-bold py-1 px-3 rounded-full text-sm animate-pulse shadow-lg">
+                            Standard
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Poulet de chaire</h3>
+                        <div class="text-primary-600 font-bold text-lg mb-4">À partir de 2500 FCFA</div>
+                        <p class="text-gray-600 mb-4">
+                            Notre poulet standard offre une chair tendre et savoureuse, parfaite pour vos plats familiaux quotidiens. 
+                            Élevé avec soin selon les normes ivoiriennes les plus strictes.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-primary-50 text-primary-600 text-sm font-medium py-1 px-3 rounded-full border border-primary-200">Frais</span>
+                            <span class="bg-primary-50 text-primary-600 text-sm font-medium py-1 px-3 rounded-full border border-primary-200">Poids < 1.8 Kg</span>
+                        </div>
+                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander du poulet entier POULET D'OR" 
+                           class="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300 group">
+                            <i class="fab fa-whatsapp text-xl group-hover:scale-110 transition-transform duration-300"></i>
+                            Commander
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Produit Card 2 - Poulet Moyen -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="images/b.jpeg" alt="Poulet moyen" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-gradient-to-r from-gold to-accent text-primary-700 font-bold py-1 px-3 rounded-full text-sm shadow-lg">
+                            Moyen
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Poulet de chaire</h3>
+                        <div class="text-primary-600 font-bold text-lg mb-4">À partir de 5000 FCFA</div>
+                        <p class="text-gray-600 mb-4">
+                            Découvrez notre poulet de qualité moyenne, idéal pour les occasions spéciales. 
+                            Sa chair généreuse et son goût authentique raviront tous les palais.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-primary-50 text-primary-600 text-sm font-medium py-1 px-3 rounded-full border border-primary-200">Frais</span>
+                            <span class="bg-primary-50 text-primary-600 text-sm font-medium py-1 px-3 rounded-full border border-primary-200">Poids < 2.5 Kg</span>
+                        </div>
+                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander du poulet entier POULET D'OR" 
+                           class="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300 group">
+                            <i class="fab fa-whatsapp text-xl group-hover:scale-110 transition-transform duration-300"></i>
+                            Commander
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Produit Card 3 - Poulet Master -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="images/b.jpeg" alt="Poulet master" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-gradient-to-r from-gold to-accent text-primary-700 font-bold py-1 px-3 rounded-full text-sm shadow-lg">
+                            Master
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Poulet de chaire</h3>
+                        <div class="text-primary-600 font-bold text-lg mb-4">À partir de 8000 FCFA</div>
+                        <p class="text-gray-600 mb-4">
+                            Notre poulet master représente l'excellence ultime. Avec une chair ferme et un goût raffiné, 
+                            il transformera chaque repas en festin exceptionnel.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-primary-50 text-primary-600 text-sm font-medium py-1 px-3 rounded-full border border-primary-200">Frais</span>
+                            <span class="bg-primary-50 text-primary-600 text-sm font-medium py-1 px-3 rounded-full border border-primary-200">Poids < 4 Kg</span>
+                        </div>
+                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander du poulet entier POULET D'OR" 
+                           class="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300 group">
+                            <i class="fab fa-whatsapp text-xl group-hover:scale-110 transition-transform duration-300"></i>
+                            Commander
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Produit Card 4 - Poulet Pondeuse Standard -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="images/c.jpg" alt="Volailles préparées" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-gradient-to-r from-gold to-accent text-primary-700 font-bold py-1 px-3 rounded-full text-sm shadow-lg">
+                            Standard
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Poulet pondeuse</h3>
+                        <div class="text-primary-600 font-bold text-lg mb-4">À partir de 4000 FCFA</div>
+                        <p class="text-gray-600 mb-4">
+                            Spécialement sélectionné pour sa chair délicate, notre poulet pondeuse standard 
+                            est parfait pour vos plats traditionnels et ragoûts savoureux.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-primary-50 text-primary-600 text-sm font-medium py-1 px-3 rounded-full border border-primary-200">Frais</span>
+                            <span class="bg-primary-50 text-primary-600 text-sm font-medium py-1 px-3 rounded-full border border-primary-200">Poids < 1.9 kg</span>
+                        </div>
+                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander des volailles préparées POULET D'OR" 
+                           class="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300 group">
+                            <i class="fab fa-whatsapp text-xl group-hover:scale-110 transition-transform duration-300"></i>
+                            Commander
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Produit Card 5 - Poulet Pondeuse Premium -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="images/c.jpg" alt="Volailles préparées" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-gradient-to-r from-gold to-accent text-primary-700 font-bold py-1 px-3 rounded-full text-sm shadow-lg">
+                            Standard
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Poulet pondeuse</h3>
+                        <div class="text-primary-600 font-bold text-lg mb-4">À partir de 6000 FCFA</div>
+                        <p class="text-gray-600 mb-4">
+                            Notre poulet pondeuse de qualité supérieure offre une texture exceptionnelle 
+                            et une saveur riche qui sublimera vos recettes les plus élaborées.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-primary-50 text-primary-600 text-sm font-medium py-1 px-3 rounded-full border border-primary-200">Frais</span>
+                            <span class="bg-primary-50 text-primary-600 text-sm font-medium py-1 px-3 rounded-full border border-primary-200">Poids < 2.5 kg</span>
+                        </div>
+                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander des volailles préparées POULET D'OR" 
+                           class="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300 group">
+                            <i class="fab fa-whatsapp text-xl group-hover:scale-110 transition-transform duration-300"></i>
+                            Commander
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Produit Card 6 - Cuisse Sacrum -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="images/i.jpeg" alt="Poulet en morceaux" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-gradient-to-r from-gold to-accent text-primary-700 font-bold py-1 px-3 rounded-full text-sm shadow-lg">
+                            Bestseller
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Poulet en morceaux</h3>
+                        <h4 class="text-gray-600 text-lg font-medium mb-1">Cuisse sacrum</h4>
+                        <div class="text-primary-600 font-bold text-lg mb-4">À partir de 3500 FCFA</div>
+                        <p class="text-gray-600 mb-4">
+                            Les cuisses sacrum, morceaux de choix par excellence ! Juteuses et pleines de saveur, 
+                            elles sont parfaites pour la grillade ou vos plats mijotés.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-primary-50 text-primary-600 text-sm font-medium py-1 px-3 rounded-full border border-primary-200">Pratique</span>
+                            <span class="bg-primary-50 text-primary-600 text-sm font-medium py-1 px-3 rounded-full border border-primary-200">Qualité</span>
+                        </div>
+                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander du poulet en morceaux POULET D'OR" 
+                           class="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300 group">
+                            <i class="fab fa-whatsapp text-xl group-hover:scale-110 transition-transform duration-300"></i>
+                            Commander
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Produit Card 7 - Escalope de Poulet -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="images/d.jpg" alt="Poulet en morceaux" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-gradient-to-r from-gold to-accent text-primary-700 font-bold py-1 px-3 rounded-full text-sm shadow-lg">
+                            Bestseller
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Poulet en morceaux</h3>
+                        <h4 class="text-gray-600 text-lg font-medium mb-1">Escalope de poulet</h4>
+                        <div class="text-primary-600 font-bold text-lg mb-4">À partir de 5500 FCFA</div>
+                        <p class="text-gray-600 mb-4">
+                            Des escalopes régulières et tendres, parfaitement découpées pour une cuisson homogène. 
+                            Idéales pour des repas rapides sans compromis sur la qualité.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-primary-50 text-primary-600 text-sm font-medium py-1 px-3 rounded-full border border-primary-200">Pratique</span>
+                            <span class="bg-primary-50 text-primary-600 text-sm font-medium py-1 px-3 rounded-full border border-primary-200">Qualité</span>
+                        </div>
+                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander du poulet en morceaux POULET D'OR" 
+                           class="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300 group">
+                            <i class="fab fa-whatsapp text-xl group-hover:scale-110 transition-transform duration-300"></i>
+                            Commander
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Produit Card 8 - Foie de Poulet -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="images/j.jpeg" alt="Poulet en morceaux" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-gradient-to-r from-gold to-accent text-primary-700 font-bold py-1 px-3 rounded-full text-sm shadow-lg">
+                            Bestseller
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Poulet en morceaux</h3>
+                        <h4 class="text-gray-600 text-lg font-medium mb-1">Foie de poulet</h4>
+                        <div class="text-primary-600 font-bold text-lg mb-4">À partir de 2000 FCFA</div>
+                        <p class="text-gray-600 mb-4">
+                            Une délicatesse appréciée des connaisseurs ! Notre foie de poulet, tendre et savoureux, 
+                            apporte une touche de raffinement à vos plats traditionnels.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-primary-50 text-primary-600 text-sm font-medium py-1 px-3 rounded-full border border-primary-200">Pratique</span>
+                            <span class="bg-primary-50 text-primary-600 text-sm font-medium py-1 px-3 rounded-full border border-primary-200">Qualité</span>
+                        </div>
+                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander du poulet en morceaux POULET D'OR" 
+                           class="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300 group">
+                            <i class="fab fa-whatsapp text-xl group-hover:scale-110 transition-transform duration-300"></i>
+                            Commander
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Produit Card 9 - Gésiers de Poulet -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="images/l.jpg" alt="Poulet en morceaux" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-gradient-to-r from-gold to-accent text-primary-700 font-bold py-1 px-3 rounded-full text-sm shadow-lg">
+                            Bestseller
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Poulet en morceaux</h3>
+                        <h4 class="text-gray-600 text-lg font-medium mb-1">Gésiers de poulet</h4>
+                        <div class="text-primary-600 font-bold text-lg mb-4">À partir de 4000 FCFA</div>
+                        <p class="text-gray-600 mb-4">
+                            Les gésiers de poulet, une spécialité à la texture unique et au goût prononcé. 
+                            Parfaits pour agrémenter vos salades et plats en sauce.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-primary-50 text-primary-600 text-sm font-medium py-1 px-3 rounded-full border border-primary-200">Pratique</span>
+                            <span class="bg-primary-50 text-primary-600 text-sm font-medium py-1 px-3 rounded-full border border-primary-200">Qualité</span>
+                        </div>
+                        <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander du poulet en morceaux POULET D'OR" 
+                           class="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300 group">
+                            <i class="fab fa-whatsapp text-xl group-hover:scale-110 transition-transform duration-300"></i>
+                            Commander
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pourquoi Nous Choisir Section -->
+    <section id="pourquoi" class="py-20 scroll-animate">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-primary-500 to-primary-700 bg-clip-text text-transparent">
+                Pourquoi Nous Choisir ?
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Avantage 1 -->
+                <div class="bg-white rounded-xl p-6 shadow-lg border-l-4 border-green-500 hover:shadow-xl transition-all duration-300 group">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800 flex items-center gap-2">
+                        <i class="fas fa-check-circle text-green-500 group-hover:scale-110 transition-transform duration-300"></i>
+                        Qualité garantie
+                    </h3>
+                    <p class="text-gray-600">
+                        Nous garantissons la qualité de nos produits, sélectionnés avec soin et préparés avec amour par nos experts
+                    </p>
+                </div>
+                
+                <!-- Avantage 2 -->
+                <div class="bg-white rounded-xl p-6 shadow-lg border-l-4 border-yellow-500 hover:shadow-xl transition-all duration-300 group">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800 flex items-center gap-2">
+                        <i class="fas fa-shipping-fast text-yellow-500 group-hover:scale-110 transition-transform duration-300"></i>
+                        Fraîcheur Garantie
+                    </h3>
+                    <p class="text-gray-600">
+                        Notre chaîne d'approvisionnement optimisée et nos processus rigoureux vous assurent 
+                        des produits d'une fraîcheur exceptionnelle, livrés dans les meilleurs délais pour préserver toutes leurs qualités.
+                    </p>
+                </div>
+                
+                <!-- Avantage 3 -->
+                <div class="bg-white rounded-xl p-6 shadow-lg border-l-4 border-blue-500 hover:shadow-xl transition-all duration-300 group">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800 flex items-center gap-2">
+                        <i class="fas fa-headset text-blue-500 group-hover:scale-110 transition-transform duration-300"></i>
+                        Service Personnalisé
+                    </h3>
+                    <p class="text-gray-600">
+                        Notre équipe dévouée et passionnée est à votre écoute permanente pour vous conseiller 
+                        et vous accompagner dans le choix des produits qui correspondent parfaitement à vos besoins et envies culinaires.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-gradient-to-br from-gray-800 to-gray-900 text-white py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-gold to-accent bg-clip-text text-transparent">
+                Prêt à Découvrir l'Excellence ?
+            </h2>
+            <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+                Rejoignez la grande famille POULET D'OR et transformez chaque repas en moment d'exception culinaire. 
+                Commandez dès maintenant et savourez la différence qualité qui fait notre réputation !
+            </p>
+            
+            <div class="flex justify-center space-x-6 mb-12">
+                <!-- WhatsApp -->
+                <a href="https://wa.me/message/6LZGPM3QDYW4I1?text=Bonjour, je souhaite commander des produits POULET D'OR" 
+                   target="_blank" class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors duration-300 transform hover:scale-110 shadow-lg">
+                    <i class="fab fa-whatsapp text-xl"></i>
+                </a>
+                
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/share/1KJuALat2R/?mibextid=wwXIfr" 
+                   target="_blank" class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors duration-300 transform hover:scale-110 shadow-lg">
+                    <i class="fab fa-facebook-f text-xl"></i>
+                </a>
+                
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/poulet_d_or.ci?igsh=bXhtajNnaHNqNDJ4&utm_source=qr" 
+                   target="_blank" class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center hover:opacity-90 transition-opacity duration-300 transform hover:scale-110 shadow-lg">
+                    <i class="fab fa-instagram text-xl"></i>
+                </a>
+                
+                <!-- TikTok -->
+                <a href="https://www.tiktok.com/@pouletdor.ci?_t=ZM-9027G3cluTU&_r=1" 
+                   target="_blank" class="w-12 h-12 bg-black rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors duration-300 transform hover:scale-110 shadow-lg">
+                    <i class="fab fa-tiktok text-xl"></i>
+                </a>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8">
+                <p class="text-gray-400">
+                    &copy; 2024 POULET D'OR - Excellence Ivoirienne | L'art de la volaille perfectionnée
+                </p>
+                <p class="text-gray-500 text-sm mt-2">
+                    Une filiale de Ivoire Volaille - Tous droits réservés
+                </p>
             </div>
         </div>
     </footer>
@@ -1350,26 +565,19 @@
     <script>
         // Mobile menu functionality
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const navLinks = document.getElementById('navLinks');
+        const mobileMenu = document.getElementById('mobileMenu');
 
         mobileMenuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            mobileMenuToggle.innerHTML = navLinks.classList.contains('active') ? '✕' : '☰';
+            mobileMenu.classList.toggle('hidden');
+            mobileMenuToggle.innerHTML = mobileMenu.classList.contains('hidden') ? 
+                '<i class="fas fa-bars"></i>' : '<i class="fas fa-times"></i>';
         });
 
         // Close mobile menu when clicking on a link
-        navLinks.addEventListener('click', (e) => {
+        mobileMenu.addEventListener('click', (e) => {
             if (e.target.tagName === 'A') {
-                navLinks.classList.remove('active');
-                mobileMenuToggle.innerHTML = '☰';
-            }
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('nav')) {
-                navLinks.classList.remove('active');
-                mobileMenuToggle.innerHTML = '☰';
+                mobileMenu.classList.add('hidden');
+                mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
             }
         });
 
@@ -1410,21 +618,18 @@
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             if (window.scrollY > 100) {
-                header.style.background = 'linear-gradient(135deg, rgba(255,255,255,0.98), rgba(255,140,0,0.08))';
-                header.style.boxShadow = '0 2px 40px rgba(255,140,0,0.15)';
+                header.classList.add('shadow-xl', 'bg-white/98');
             } else {
-                header.style.background = 'linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,140,0,0.05))';
-                header.style.boxShadow = '0 2px 30px rgba(255,140,0,0.1)';
+                header.classList.remove('shadow-xl', 'bg-white/98');
             }
         });
 
-        // Parallax effect for hero
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero-content');
-            if (hero) {
-                hero.style.transform = `translateY(${scrolled * 0.1}px)`;
-            }
+        // Add loading animation to product cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const productCards = document.querySelectorAll('.transform');
+            productCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
         });
     </script>
 </body>
